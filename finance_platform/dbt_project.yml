@@ -1,0 +1,28 @@
+name: 'finance_platform'
+version: '1.0.0'
+config-version: 2
+
+profile: 'finance_platform'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  finance_platform:
+    staging:
+      +materialized: view
+      +schema: CONFORMED
+    intermediate:
+      +materialized: view
+      +schema: CONFORMED
+    marts:
+      +materialized: table
+      +schema: CURATED

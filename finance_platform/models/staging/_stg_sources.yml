@@ -1,0 +1,50 @@
+version: 2
+
+sources:
+  - name: raw
+    database: FINANCE_PLATFORM
+    schema: RAW
+    description: "Raw data ingested from ERP source systems"
+    tables:
+      - name: RAW_GL_JOURNAL_ENTRIES
+        description: "General Ledger journal entry lines from ERP"
+        columns:
+          - name: journal_id
+            description: "Unique journal identifier"
+            tests:
+              - not_null
+          - name: entry_line
+            description: "Line number within the journal"
+          - name: posting_date
+            description: "Date the entry was posted"
+            tests:
+              - not_null
+          - name: debit_amount
+            description: "Debit amount (0 if credit line)"
+          - name: credit_amount
+            description: "Credit amount (0 if debit line)"
+
+      - name: RAW_CHART_OF_ACCOUNTS
+        description: "Chart of Accounts master data"
+        columns:
+          - name: account_code
+            description: "Unique account identifier"
+            tests:
+              - unique
+              - not_null
+
+      - name: RAW_LEGAL_ENTITIES
+        description: "Legal entity master data"
+        columns:
+          - name: entity_code
+            tests:
+              - unique
+              - not_null
+
+      - name: RAW_COST_CENTRES
+        description: "Cost centre master data"
+        columns:
+          - name: cost_centre_code
+            tests:
+              - unique
+              - not_null

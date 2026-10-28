@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: dim_accounts
+    description: "Account dimension — Chart of Accounts for reporting"
+    columns:
+      - name: account_code
+        description: "Primary key — unique account identifier"
+        tests:
+          - unique
+          - not_null
+
+  - name: fct_journal_entries
+    description: "Journal entry fact table — transaction-level detail"
+    columns:
+      - name: journal_entry_key
+        description: "Surrogate primary key"
+        tests:
+          - unique
+          - not_null
+
+  - name: fct_trial_balance
+    description: "Trial balance — period/entity/account level balances"
+
+  - name: fct_pnl_summary
+    description: "Profit & Loss summary — monthly by entity"
+
+  - name: fct_balance_sheet
+    description: "Balance sheet — monthly by entity"
+
+  - name: fct_data_quality
+    description: "Data quality metrics — monitors platform health"

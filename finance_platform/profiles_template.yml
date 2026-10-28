@@ -1,0 +1,14 @@
+# TEMPLATE — copy to ~/.dbt/profiles.yml and fill in your details
+finance_platform:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: "<your-snowflake-account>"    # e.g. abc12345.eu-west-2.aws
+      user: "<your-username>"
+      password: "<your-password>"
+      role: FINANCE_ANALYST
+      database: FINANCE_PLATFORM
+      warehouse: FINANCE_WH
+      schema: CONFORMED
+      threads: 4
